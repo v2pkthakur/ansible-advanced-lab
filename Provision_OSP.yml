@@ -1,6 +1,7 @@
 - name: Provision QA Environment
-  hosts: jumpbox
+  hosts: localhost
   roles:
+  - osp-image
   - osp-network
   - osp-flavor
   - osp-security-group
@@ -24,4 +25,3 @@
     include_role:
       name: osp-instances
       vars_from: db.yaml
-~                          
