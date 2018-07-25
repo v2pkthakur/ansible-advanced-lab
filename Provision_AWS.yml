@@ -27,3 +27,12 @@
       dest: /root/bin/order_svc.sh
       mode: 0755
 
+  - name: Import Vars
+    include_vars: credentials.yaml
+
+  - name: Order the Environment
+    command: "/root/bin/order_svc.sh -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1 -y"
+    environment:
+      username: "{{ username }}"
+      password: "{{ password }}"
+      uri: "{{ uri }}"
