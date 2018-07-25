@@ -1,0 +1,15 @@
+- name: Remove QA VMs from OSP Environment
+  hosts: localhost
+  become: yes
+  tasks:
+  - name: Remove VMs
+    os_server:
+      state: absent
+      cloud: ospcloud
+      name: "{{ item }}"
+      delete_fip: true
+    with_items:
+      - app1
+      - app2
+      - db
+      - frontend
