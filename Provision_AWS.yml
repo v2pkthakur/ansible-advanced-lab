@@ -1,0 +1,29 @@
+---
+# Playbook to Provision AWS Envrioment via Cloudformation Template hosted on OPENTLC.
+#
+- name: Get the required script
+  hosts: localhost
+  tasks:
+  - name: Create a Dir
+    file:
+      path: /root/bin
+      state: directory
+
+  - name: Download the Script
+    get_url:
+      url: http://www.opentlc.com/download/ansible_bootcamp/scripts/common.sh
+      dest: /root/bin/common.sh
+      mode: 0755
+
+  - name: Download 
+    get_url:
+      url: http://www.opentlc.com/download/ansible_bootcamp/scripts/jq-linux64 
+      dest: /root/bin/jq
+      mode: 0755
+
+  - name: Download 
+    get_url:
+      url: http://www.opentlc.com/download/ansible_bootcamp/scripts/order_svc.sh
+      dest: /root/bin/order_svc.sh
+      mode: 0755
+
