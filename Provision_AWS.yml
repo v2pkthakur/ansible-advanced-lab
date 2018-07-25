@@ -2,7 +2,7 @@
 # Playbook to Provision AWS Envrioment via Cloudformation Template hosted on OPENTLC.
 #
 - name: Get the required script
-  hosts: localhost
+  hosts: workstation
   tasks:
   - name: Create a Dir
     file:
