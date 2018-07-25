@@ -1,5 +1,5 @@
 - name: Provision QA Environment
-  hosts: localhost
+  hosts: workstation
   roles:
   - osp-image
   - osp-network
