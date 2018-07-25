@@ -1,0 +1,9 @@
+- name: Setup load-balancer tier
+  hosts: tag_AnsibleGroup_frontends
+  become: yes
+  gather_facts: true
+  roles:
+    - {name: base-config, tags: base-config}
+    - {name: lb-tier, tags: [lbs, haproxy]}
+
+
