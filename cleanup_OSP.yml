@@ -1,5 +1,5 @@
 - name: Remove QA VMs from OSP Environment
-  hosts: localhost
+  hosts: workstation
   become: yes
   tasks:
   - name: Remove VMs
