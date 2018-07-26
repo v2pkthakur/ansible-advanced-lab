@@ -36,3 +36,7 @@
       username: "{{ username }}"
       password: "{{ password }}"
       uri: "{{ uri }}"
+
+  - name: Wait for VMs to Provision
+    pause:
+      minutes: 10
