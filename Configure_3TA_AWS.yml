@@ -1,6 +1,6 @@
 ---
 - name: Setup load-balancer tier
-  hosts: tag_AnsibleGroup_frontends
+  hosts: tag_Name_frontend1
   become: yes
   gather_facts: true
   roles:
@@ -8,7 +8,16 @@
     - {name: lb-tier, tags: [lbs, haproxy]}
 
 - name: Setup app tier
-  hosts: tag_AnsibleGroup_apps
+  hosts: tag_Name_app1
+  become: yes
+  gather_facts: true
+  roles:
+    - {name: base-config, tags: base-config}
+    - {name: app-tier, tags: [apps, tomcat]}
+
+
+- name: Setup app tier
+  hosts: tag_Name_app1
   become: yes
   gather_facts: true
   roles:
@@ -16,7 +25,7 @@
     - {name: app-tier, tags: [apps, tomcat]}
 
 - name: Setup database tier
-  hosts: tag_AnsibleGroup_appdbs
+  hosts: tag_Name_appdb1
   become: yes
   gather_facts: true
   roles:
@@ -24,7 +33,7 @@
     - {name: geerlingguy.postgresql, tags: [dbs, postgres]}
 
 - name: Smoke test
-  hosts: tag_AnsibleGroup_frontends
+  hosts: tag_Name_frontend1
   tasks:
   - uri:
       url: http://127.0.0.1 
