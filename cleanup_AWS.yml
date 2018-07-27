@@ -24,7 +24,7 @@
       enabled: false
  
 - name: Clean UP AWS Resources.
-  hosts: tag_Name_app1: tag_Name_app2
+  hosts: tag_Name_app1 tag_Name_app2
   tasks: 
   - name: Disable repos
     template:
