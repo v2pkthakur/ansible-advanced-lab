@@ -1,0 +1,70 @@
+- name: Clean UP AWS Resources.
+  hosts: tag_Name_frontend1
+  tasks: 
+  - name: Disable repos
+    template:
+      src: /dev/null
+      dest: /etc/yum.repos.d/open_three-tier-app.repo
+    
+  - name: Remove base tools and three tier app packages
+    yum:
+      name: "{{ item }}"
+      state: absent
+    with_items:
+    - httpie
+    - python-pip
+    - haproxy
+    - tomcat
+    - postgresql-serveir
+
+  - name: Stop Haproxy
+    service:
+      name: haproxy
+      state: stopped
+      enabled: false
+ 
+- name: Clean UP AWS Resources.
+  hosts: tag_Name_app1: tag_Name_app2
+  tasks: 
+  - name: Disable repos
+    template:
+      src: /dev/null
+      dest: /etc/yum.repos.d/open_three-tier-app.repo
+    
+  - name: Remove base tools and three tier app packages
+    yum:
+      name: "{{ item }}"
+      state: absent
+    with_items:
+    - httpd
+    - haproxy
+    - tomcat
+ 
+  - name: Stop Tomcat
+    service:
+      name: tomcat
+      state: stopped
+      enabled: false
+
+- name: Clean UP AWS Resources.
+  hosts: tag_Name_appsdb1
+  tasks: 
+  - name: Disable repos
+    template:
+      src: /dev/null
+      dest: /etc/yum.repos.d/open_three-tier-app.repo
+    
+  - name: Remove base tools and three tier app packages
+    yum:
+      name: "{{ item }}"
+      state: absent
+    with_items:
+    - postgres
+    - haproxy
+    - tomcat
+ 
+  - name: Stop Postgres
+    service:
+      name: postgres
+      state: stopped
+      enabled: false
